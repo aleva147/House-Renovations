@@ -1,0 +1,123 @@
+[
+	{    
+		"id": 1,
+		"client": "pera",
+		"type": "house",
+		"address": "England, London, Churchill Street 6b",
+		"numOfRooms": 2,
+		"sqFootage" : 100,
+		"sketch": [{
+			"x": 80,
+			"y": 20,
+			"width": 120,
+			"height": 40,
+			"doorWall": "bottom",
+			"doorPosition": 40,
+			"status": "none",
+			"workers" : [],
+			"progress" : 0
+		}, {
+			"x": 200,
+			"y": 20,
+			"width": 40,
+			"height": 40,
+			"doorWall": "left",
+			"doorPosition": 15,
+			"status": "none",
+			"workers" : [],
+			"progress" : 0
+		}]
+	}, {    
+		"id": 2,
+		"client": "paja",
+		"type": "apartment",
+		"address": "England, Manchester, United Street 30c",
+		"numOfRooms": 1,
+		"sqFootage" : 40,
+		"sketch": [{
+			"x": 100,
+			"y": 35,
+			"width": 100,
+			"height": 80,
+			"doorWall": "bottom",
+			"doorPosition": 45,
+			"status": "none",
+			"workers" : [],
+			"progress" : 0
+		}]
+	}, {    
+		"id": 3,
+		"client": "pera",
+		"type": "apartment",
+		"address": "Ireland, Dublin, Conan's Steet 2a",
+		"numOfRooms": 3,
+		"sqFootage" : 200,
+		"sketch": [{
+			"x": 80,
+			"y": 10,
+			"width": 100,
+			"height": 50,
+			"doorWall": "bottom",
+			"doorPosition": 45,
+			"status": "none",
+			"workers" : [],
+			"progress" : 0
+		},{
+			"x": 180,
+			"y": 10,
+			"width": 55,
+			"height": 50,
+			"doorWall": "bottom",
+			"doorPosition": 17.5,
+			"status": "none",
+			"workers" : [],
+			"progress" : 0
+		},{
+			"x": 120,
+			"y": 60,
+			"width": 100,
+			"height": 50,
+			"doorWall": "bottom",
+			"doorPosition": 45,
+			"status": "none",
+			"workers" : [],
+			"progress" : 0
+		}]
+	}, {    
+		"id": 4,
+		"client": "pera",
+		"type": "apartment",
+		"address": "England, Birmingham, Premier Street 38",
+		"numOfRooms": 1,
+		"sqFootage" : 40,
+		"sketch": [{
+			"x": 100,
+			"y": 35,
+			"width": 100,
+			"height": 80,
+			"doorWall": "bottom",
+			"doorPosition": 45,
+			"status": "none",
+			"workers" : [],
+			"progress" : 0
+		}]
+	}, {    
+		"id": 5,
+		"client": "james",
+		"type": "apartment",
+		"address": "England, Birmingham, 182 Toney's Street",
+		"numOfRooms": 1,
+		"sqFootage" : 40,
+		"sketch": [{
+			"x": 100,
+			"y": 35,
+			"width": 100,
+			"height": 80,
+			"doorWall": "bottom",
+			"doorPosition": 45,
+			"status": "none",
+			"workers" : [],
+			"progress" : 0
+		}]
+	}
+]

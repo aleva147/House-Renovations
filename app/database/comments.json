@@ -1,0 +1,37 @@
+[
+    {
+		"id": 1,
+		"username": "pera",
+        "agency" : "hammers",
+        "grade" : 8,
+        "text": "Provided solid services and finished before deadline."
+    },
+    {
+		"id": 2,
+		"username": "james",
+        "agency" : "hammers",
+        "grade" : 10,
+        "text": "Very quick cooperation and a job well done."
+    },
+    {
+		"id": 3,
+		"username": "paja",
+        "agency" : "hammers",
+        "grade" : 6,
+        "text": "A sloppy job but the deadline was met."
+    },
+    {
+		"id": 4,
+		"username": "paja",
+        "agency" : "shovels",
+        "grade" : 10,
+        "text": "Thourough professionals."
+    },
+    {
+		"id": 5,
+		"username": "pera",
+        "agency" : "shovels",
+        "grade" : 9,
+        "text": "The plumbing took longer than anticipated."
+    }
+]

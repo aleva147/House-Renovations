@@ -1,0 +1,27 @@
+@media (min-width: 900px) {    
+    .actionButton {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .eraseButton {
+        width: 45%;
+    }
+}
+
+@media (max-width: 900px) {    
+    .actionButton {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .eraseButton {
+        width: 100%;
+    }
+}
+
+.actionsContainer {
+    width : 50%;
+} 
+
+.optionsContainer {
+    width: 30%;
+}

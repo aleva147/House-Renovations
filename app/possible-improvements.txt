@@ -1,0 +1,28 @@
+Possible Improvements:
+----------------------
+
+- Use an EventListener for detecting changes in the localStorage instead of 
+  using localStorage.get() in ngOnInit and needing to reload pages.
+  
+  This will also protect your app from crushing when the user has multiple 
+  tabs open and logs out in one of them while continuing to use the others.
+
+
+- Turn the commonly used html sections into components 
+  in order to drastically reduce code duplication.
+  
+  
+- Remove duplicated code by moving it to "app.component.html":
+
+	<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+		<app-header></app-header>
+
+		<router-outlet></router-outlet>
+
+		<!-- Fill Space (so that the footer is always at the bottom of the screen)-->
+		<div style="flex-grow:1"></div>
+
+		<app-footer></app-footer>
+
+	</div>

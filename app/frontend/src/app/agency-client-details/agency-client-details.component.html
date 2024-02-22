@@ -1,0 +1,63 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Client Information -->
+<div class="container text-center registerContainer">
+    <div class="bg-dark text-light py-3 fs-4">Client Information</div>
+    <div class="bg-light-subtle py-4 registerDiv">
+        <form>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <img src={{selectedClient.photobase64}} widht="200px" height="200px" alt="">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Firstname:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5">{{selectedClient.firstname}}</p>
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Lastname:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5">{{selectedClient.lastname}}</p>
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Phone:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5">{{selectedUser.phone}}</p>
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Mail:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5">{{selectedUser.mail}}</p>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center mt-2">
+                <div class="col-sm">
+                    <input class=" btn btn-dark" style="width:40%" type='button' value='Close' (click)="close()">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

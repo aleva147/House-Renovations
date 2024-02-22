@@ -1,0 +1,139 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<app-header></app-header>
+
+<!-- Search Section-->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start">
+    <div class="container">
+        <div class="d-md-flex justify-content-around align-middle text-dark">
+            <div>
+                <h4>Search agencies by name: </h4>
+                <div class="row py-1">
+                    <div class="col">
+                        Name: 
+                    </div>
+                    <div class="col">
+                        <input type="text" [(ngModel)]="searchParamName">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h4 class="h4search">Search agencies by address: </h4>
+                <div class="row py-1">
+                    <div class="col">
+                        Country: 
+                    </div>
+                    <div class="col">
+                        <input type="text" [(ngModel)]="searchParamCountry">
+                    </div>
+                </div>
+                <div class="row py-1">
+                    <div class="col">
+                        City: 
+                    </div>
+                    <div class="col">
+                        <input type="text" [(ngModel)]="searchParamCity">
+                    </div>
+                </div>
+                <div class="row py-1">
+                    <div class="col">
+                        Street: 
+                    </div>
+                    <div class="col">
+                        <input type="text" [(ngModel)]="searchParamStreet"> <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-outline-dark mt-3 searchButton" (click)="search()">Search</button>
+    </div>
+</section>
+
+
+<!-- Sort Selection -->
+<section>
+    <div class="sortSection container text-center my-4">
+        <form>
+            <div class="row py-1">
+            <div class="col">
+                <button class="btn btn-dark sortButton" (click)="sortByName('a')">Sort by name (ascending)</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-dark sortButton" (click)="sortByName('d')">Sort by name (descending)</button> <br>
+            </div>
+            </div>
+            <div class="row py-1">
+            <div class="col">
+                <button class="btn btn-dark sortButton" (click)="sortByCountry('a')">Sort by country (ascending)</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-dark sortButton" (click)="sortByCountry('d')">Sort by country (descending)</button>
+            </div>
+            </div>
+            <div class="row py-1">
+            <div class="col">
+                <button class="btn btn-dark sortButton" (click)="sortByCity('a')">Sort by cities (ascending)</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-dark sortButton" (click)="sortByCity('d')">Sort by cities (descending)</button>
+            </div>
+            </div>
+            <div class="row py-1">
+            <div class="col">
+                <button class="btn btn-dark sortButton" (click)="sortByStreet('a')">Sort by street (ascending)</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-dark sortButton" (click)="sortByStreet('d')">Sort by street (descending)</button>
+            </div>
+            </div>
+        </form>
+
+    </div>
+</section>
+
+
+<!-- Search Results Section -->
+<section>
+    <div *ngIf="allAgencies.length > 0">
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm text-center align-middle">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Logo</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Visit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let a of allAgencies">
+                        <td>
+                            <img src={{a.photobase64}} alt="">
+                        </td>
+                        <td>{{a.name}}</td>
+                        <td>{{a.description}}</td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" href="guestAgencyDetails" target="_blank" (click)="seeMore(a)">See more</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="allAgencies.length == 0">
+        <div class="container text-center text-white mt-3">
+            <h3><i>No agencies found.</i></h3>
+        </div>
+    </div>
+</section>
+
+<!-- Fill Space (so that the footer is always at the bottom of the screen)-->
+<div style="flex-grow:1"></div>
+
+<app-footer></app-footer>
+
+</div>

@@ -1,0 +1,181 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Actions -->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start">
+    <div class="container">
+        <div class="text-center text-dark">
+            <h3>Additional worker slots available: {{selectedAgency.openPositions}}</h3>
+        </div>
+        <div class="d-md-flex justify-content-center align-middle text-dark"  *ngIf="selectedAgency.openPositions > 0">
+            <div class="m-1 pt-1">
+                <h5>Add a new worker: </h5>
+            </div>
+            <div class="m-1">
+                <button class="btn btn-outline-dark searchButton" (click)="addWorker()">Add Worker</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- All Workers Requests Section -->
+<section [hidden]="editMode==true">
+    <div class="text-center text-white mt-4 ">
+        <h5>Received requests for additional positions:</h5>
+    </div>
+    <div class="container reqsTable">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm text-center align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Requested Amount</th>
+                    <th scope="col">Approve</th>
+                    <th scope="col">Reject</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let w of allWorkersRequests">
+                    <td>{{w.amount}}</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" (click)="approve(w)">Approve</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" (click)="reject(w)">Reject</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- All Workers Section -->
+<section [hidden]="editMode==true">
+    <div class="text-center text-white mt-4 ">
+        <h5>List of workers in this agency:</h5>
+    </div>
+    <div class="container workersTable">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm text-center align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Full name</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Field</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let w of allWorkers">
+                    <td>{{w.firstname}} {{w.lastname}}</td>
+                    <td>{{w.mail}}</td>
+                    <td>{{w.phone}}</td>
+                    <td>{{w.field}}</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" (click)="edit(w)">Edit</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="remove(w)">Remove</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Edit Worker -->
+<div *ngIf="editMode==true">
+    <div class="container text-center registerContainer">
+        <div class="bg-dark text-light py-3 fs-4">Edit Information</div>
+        <div class="bg-light-subtle py-4 registerDiv">
+            <form>
+                <div class="row mb-3 justify-content-center align-items-center">
+                    <div class="col-sm">
+                        <h5>Firstname:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="newFirstname" name="newFirstname"[(ngModel)]="newFirstname">
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center align-items-center">
+                    <div class="col-sm">
+                        <h5>Lastname:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="newLastname" name="newLastname"[(ngModel)]="newLastname">
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center align-items-center">
+                    <div class="col-sm">
+                        <h5>Phone:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="newPhone" name="newPhone"[(ngModel)]="newPhone">
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center align-items-center">
+                    <div class="col-sm">
+                        <h5>Mail:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="newMail" name="newMail"[(ngModel)]="newMail">
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center align-items-center">
+                    <div class="col-sm">
+                        <h5>Field:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="newField" name="newField"[(ngModel)]="newField">
+                    </div>
+                </div>
+                <div class="row justify-content-center align-items-center mt-2">
+                    <div class="col-sm">
+                        <input class=" btn btn-dark" style="width:40%" type='button' value='Confirm' (click)="editConfirmed()">
+                    </div>
+                </div>
+                <div [hidden]="message.length == 0">
+                    <br>
+                    <p class="error">{{message}}</p>
+                    <br>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Remove Confirmation Modal -->
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Remove Worker Confirmation</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row mb-3">
+                    <h6 style="color:red">Are you sure? This action cannot be undone.</h6>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="removeConfirmed()">Confirm</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

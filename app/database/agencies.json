@@ -1,0 +1,62 @@
+[
+    {
+        "username": "hammers",
+        "name" : "Hammers and Co.",
+        "country" : "England",
+		"city" : "London",
+		"street" : "West Ham Street 23",
+		"identification": 535888,
+		"description" : "Experienced plumbers, painters, carpenters and electricians from West London.",
+		"openPositions" : 0
+    },
+    {
+        "username": "shovels",
+        "name" : "Shovels Inc.",
+        "country" : "England",
+		"city" : "Brentford",
+		"street" : "221b Baker Street",
+		"identification": 111111,
+		"description" : "Fixing floors all over England since 1997.",
+		"openPositions" : 0
+    },
+    {
+        "username": "cleaners",
+        "name" : "Joe's Cleaning Agency",
+        "country" : "England",
+		"city" : "Manchester",
+		"street" : "United Street 7c",
+		"identification": 200323,
+		"description" : "Thorough cleaning and restorations of older appartments.",
+		"openPositions" : 0
+    },
+	{
+        "username": "marios",
+        "name" : "Mario's Plumbing Agency",
+        "country" : "Italy",
+		"city" : "Torino",
+		"street" : "30a Al Dente",
+		"identification": 800089,
+		"description" : "Established in 1983. in Torino. Offering reliable plumbing services ever since.",
+		"openPositions" : 0
+    },
+	{
+        "username": "lucky",
+        "name" : "Lucky Charms",
+        "country" : "Ireland",
+		"city" : "Dublin",
+		"street" : "Irish Boulevard 83",
+		"identification": 288288,
+		"description" : "Ireland's main tiles provider.",
+		"openPositions" : 0
+    },
+	{
+        "username": "conans",
+        "name" : "Conan and Co.",
+        "country" : "Ireland",
+		"city" : "Dublin",
+		"street" : "Andy's Street 29",
+		"identification": 402889,
+		"description" : "Repairing appartments all over Ireland. Carpeting, plumbin, rooflaying, painting...",
+		"openPositions" : 0
+    }
+]

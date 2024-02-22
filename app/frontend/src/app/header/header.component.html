@@ -1,0 +1,47 @@
+<!-- Header -->
+<nav class="navbar navbar-expand-md bg-black bg-gradient navbar-dark py-3">
+    <div class="container">
+        <a href="#" class="navbar-brand fs-3" *ngIf="loggedUser.type=='none' && router.url !== '/adminLogin'">FIXER</a>
+        <a href="adminLogin" class="navbar-brand fs-3" *ngIf="loggedUser.type=='none' && router.url === '/adminLogin'">FIXER</a>
+        <a href="client" class="navbar-brand fs-3" *ngIf="loggedUser.type=='client'">FIXER</a>
+        <a href="agency" class="navbar-brand fs-3" *ngIf="loggedUser.type=='agency'">FIXER</a>
+        <a href="adminUsers" class="navbar-brand fs-3" *ngIf="loggedUser.type=='admin'">FIXER</a>
+    
+        <button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="" class="nav-link" *ngIf="loggedUser.type=='none' && router.url !== '/adminLogin'">Agencies</a>
+                    <a href="client" class="nav-link" *ngIf="loggedUser.type=='client'">Profile</a>
+                    <a href="agency" class="nav-link" *ngIf="loggedUser.type=='agency'">Profile</a>
+                    <a href="adminUsers" class="nav-link" *ngIf="loggedUser.type=='admin'">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login" class="nav-link" *ngIf="loggedUser.type=='none' && router.url !== '/adminLogin'">Login</a>
+                    <a href="clientObjects" class="nav-link" *ngIf="loggedUser.type=='client'">Objects</a>
+                    <a href="agencyWorkers" class="nav-link" *ngIf="loggedUser.type=='agency'">Workers</a>
+                    <a href="adminRegistrations" class="nav-link" *ngIf="loggedUser.type=='admin'">Registrations</a>
+                </li>
+                <li class="nav-item">
+                    <a href="register" class="nav-link" *ngIf="loggedUser.type=='none' && router.url !== '/adminLogin'">Register</a>
+                    <a href="clientAgencies" class="nav-link" *ngIf="loggedUser.type=='client'">Agencies</a>
+                    <a href="agencyJobs" class="nav-link" *ngIf="loggedUser.type=='agency'">Jobs</a>
+                    <a href="adminJobs" class="nav-link" *ngIf="loggedUser.type=='admin'">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="clientJobs" class="nav-link" *ngIf="loggedUser.type=='client'">Jobs</a>
+                    <a href="" class="nav-link" (click)="logout()" *ngIf="loggedUser.type=='agency'">Log out</a>
+                    <a href="changePassword" class="nav-link" *ngIf="loggedUser.type=='admin'">Change password</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" (click)="logout()" *ngIf="loggedUser.type=='client'">Log out</a>
+                    <a href="../adminLogin" class="nav-link" (click)="logout()" *ngIf="loggedUser.type=='admin'">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

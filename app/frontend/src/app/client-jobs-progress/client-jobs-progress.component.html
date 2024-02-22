@@ -1,0 +1,92 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Actions -->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start">
+    <div class="container actionsContainer" >
+        <div class="d-md-flex justify-content-around align-middle text-dark">
+            <div class="m-1"> 
+                <button class="btn btn-outline-dark actionButton"  (click)="return()">Return</button>
+            </div>
+            <div class="m-1"> 
+                <button class="btn btn-outline-dark actionButton" (click)="pay()" [disabled]="allRoomsFinished == false">Finish and Pay</button>
+            </div>
+            <div class="m-1"> 
+                <button class="btn btn-outline-dark actionButton" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="terminate()">Terminate</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Terminate Modal -->
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Terminate Contract</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row mb-3 justify-content-center">
+                <div class="col-sm">
+                    <h5>Reason:</h5>
+                </div>
+                <div class="col-sm">
+                    <textarea class="form-control" name="reason" rows="5" [(ngModel)]="reason" maxlength="300"></textarea>
+                </div>
+            </div>
+            <div *ngIf="message.length > 0">
+                <p [style]="error == true ? 'color:red' : 'color:blue'">{{message}}</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="sendTermination()">Send request</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Canvas -->
+<div class="container mt-4">
+    <div class="text-center" >
+        <canvas #canvas style="border: 1px solid"></canvas>
+    </div>
+</div>
+
+<!-- Panel for Rooms -->
+<section class="bg-secondary-subtle text-light mt-3 py-2 text-center text-md-start">
+
+    <div class="text-center text-dark" *ngIf="selectedRoom == null">
+        <div class="col-sm">
+            <b>No room selected.</b>
+        </div>
+    </div>
+
+    <!-- Changing existing room -->
+    <div class="container optionsContainer text-center pt-2 mt-2" *ngIf="selectedRoom != null">
+        <div class="row mb-3 justify-content-center align-items-center text-dark" >
+            <div class="col-sm" *ngIf="selectedRoom.status=='finished'">
+                <h4 style="color:green"><b>Room Finished!</b></h4>
+            </div>
+            <div class="col-sm" *ngIf="selectedRoom.status=='working'">
+                <h4 style="color:red"><b>Currently Working in this Room!</b></h4>
+                <h5 class="mt-4">Room Progress: {{selectedRoom.progress}}%</h5>
+            </div>
+            <div class="col-sm" *ngIf="selectedRoom.status=='none'">
+                <h4><b>Work hasn't started yet in this Room.</b></h4>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

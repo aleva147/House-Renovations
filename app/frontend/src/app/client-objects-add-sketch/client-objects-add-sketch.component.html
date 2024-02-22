@@ -1,0 +1,186 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Actions -->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start">
+    <div class="container actionsContainer" >
+        <div class="d-md-flex justify-content-around align-middle text-dark">
+            <div class="m-1">
+                <button class="btn btn-outline-dark actionButton" (click)="eraseSketch()">Erase sketch</button>
+            </div>
+            <div class="m-1"> 
+                <button class="btn btn-outline-dark actionButton" (click)="saveSketch()" [disabled]="isolated == true || overlapping == true || rooms.length != objectt.numOfRooms">Save sketch</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Canvas -->
+<div class="container mt-4">
+    <div class="text-center" >
+        <canvas #canvas style="border: 1px solid"></canvas>
+    </div>
+</div>
+
+<!-- Irregular Placement Messages  -->
+<div class="container mt-2" *ngIf="overlapping == true || isolated == true">
+    <div class="text-center" >
+        <b class="error">{{message}}</b>
+    </div>
+</div>
+<div class="container mt-2" *ngIf="rooms.length < objectt.numOfRooms">
+    <div class="text-center" >
+        <b class="error">You need to add more rooms!</b>
+    </div>
+</div>
+<div class="container mt-2" *ngIf="rooms.length > objectt.numOfRooms">
+    <div class="text-center" >
+        <b class="error">You have too many rooms!</b>
+    </div>
+</div>
+
+<!-- Panels for Rooms -->
+<section class="bg-secondary-subtle text-light mt-3 py-2 text-center text-md-start">
+
+    <div class="text-center text-dark pb-2" *ngIf="selectedRoom == null && rooms.length >= objectt.numOfRooms">
+        <div>
+            <b style="color:orange">You cannot add any more rooms.</b>
+        </div>
+    </div>
+
+    <!-- Adding a new room -->
+    <div class="container roomOptionsContainer text-center mt-2" *ngIf="selectedRoom == null && rooms.length < objectt.numOfRooms">
+        <div class="text-dark pb-2">
+            <b>ADD A NEW ROOM:</b>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <h5>Room width: [m]</h5>
+            </div>
+            <div class="col-sm text-center">
+                <input type="text" class="form-control" id="newRoomWidth" name="newRoomWidth" [(ngModel)]="newRoomWidth">
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <h5>Room height: [m]</h5>
+            </div>
+            <div class="col-sm text-center">
+                <input type="text" class="form-control" id="newRoomHeight" name="newRoomHeight" [(ngModel)]="newRoomHeight">
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <h5>Door on wall:</h5>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center text-dark">
+                <div class="col-sm">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="bottomm1" name="wall1" value="bottom" [(ngModel)]="newRoomDoorWall">
+                        <label class="form-check-label" for="bottom1">Bottom</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="top1" name="wall1" value="top" [(ngModel)]="newRoomDoorWall">
+                        <label class="form-check-label" for="top1">Top</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="left1" name="wall1" value="left" [(ngModel)]="newRoomDoorWall">
+                        <label class="form-check-label" for="left1">Left</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="right1" name="wall1" value="right" [(ngModel)]="newRoomDoorWall">
+                        <label class="form-check-label" for="right1">Right</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <h5>Door position: [m]</h5>
+            </div>
+            <div class="col-sm text-center">
+                <input type="text" class="form-control" id="newRoomDoorPosition" name="newRoomDoorPosition" [(ngModel)]="newRoomDoorPosition">
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <input class="btn my-1 btn-dark eraseButton" type='button' value='Place room' (click)="placeRoom()">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="text-center text-dark" *ngIf="selectedRoom == null && rooms.length >= objectt.numOfRooms">
+        <div class="col-sm">
+            <b>No room selected.</b>
+        </div>
+    </div>
+
+    <!-- Changing existing room -->
+    <div class="container roomOptionsContainer text-center pt-2 mt-2" *ngIf="selectedRoom != null">
+        <div class="row mb-3 justify-content-center align-items-center text-dark" >
+            <div class="col-sm">
+                <h5>Room width: [m]</h5>
+            </div>
+            <div class="col-sm text-center">
+                <input type="text" class="form-control" id="roomWidth" name="roomWidth" [(ngModel)]="newWidth" (change)="updateCanvas()">
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <h5>Room height: [m]</h5>
+            </div>
+            <div class="col-sm text-center">
+                <input type="text" class="form-control" id="roomHeight" name="roomHeight" [(ngModel)]="newHeight" (change)="updateCanvas()">
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <h5>Door on wall:</h5>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center text-dark">
+                <div class="col-sm">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="bottom" name="wall" value="bottom" [(ngModel)]="newDoorWall" (change)="updateCanvas()">
+                        <label class="form-check-label" for="bottom">Bottom</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="top" name="wall" value="top" [(ngModel)]="newDoorWall" (change)="updateCanvas()">
+                        <label class="form-check-label" for="top">Top</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="left" name="wall" value="left" [(ngModel)]="newDoorWall" (change)="updateCanvas()">
+                        <label class="form-check-label" for="left">Left</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="right" name="wall" value="right" [(ngModel)]="newDoorWall" (change)="updateCanvas()">
+                        <label class="form-check-label" for="right">Right</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <h5>Door position: [m]</h5>
+            </div>
+            <div class="col-sm text-center">
+                <input type="text" class="form-control" id="doorPosition" name="doorPosition" [(ngModel)]="newDoorPosition" (change)="updateCanvas()">
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <input class="btn my-1 btn-dark eraseButton" type='button' value='Erase Room' (click)="eraseRoom()">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

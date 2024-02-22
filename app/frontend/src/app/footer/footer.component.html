@@ -1,0 +1,32 @@
+<!-- Footer -->
+<section class="mt-5">
+    <footer class="text-center text-white bg-dark">
+        <div *ngIf="loggedUser.type=='none' && router.url !== '/adminLogin'">
+            <div class="container p-4 pb-2" *ngIf="router.url !== '/register'">
+                <div class="d-flex justify-content-center align-items-center">
+                    <p class="px-3">Register for free</p>
+                    <button type="button" class="btn btn-outline-light btn-rounded mb-3" routerLink="register">
+                    Sign up
+                    </button>
+                </div>
+            </div>
+            <div class="container p-4 pb-2" *ngIf="router.url === '/register'">
+                <div class="d-flex justify-content-center align-items-center">
+                    <p class="px-3">Already have an account?</p>
+                    <button type="button" class="btn btn-outline-light btn-rounded mb-3" routerLink="../login">
+                    Sign in
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="text-center text-white p-3 bg-black">
+            © 2023 Copyright:
+            <a class="text-white" href="" *ngIf="loggedUser.type=='none' && router.url !== '/adminLogin'">Fixer</a>
+            <a class="text-white" href="adminLogin" *ngIf="loggedUser.type=='none' && router.url === '/adminLogin'">Fixer</a>
+            <a class="text-white" href="client" *ngIf="loggedUser.type=='client'">Fixer</a>
+            <a class="text-white" href="agency" *ngIf="loggedUser.type=='agency'">Fixer</a>
+            <a class="text-white" href="adminUsers" *ngIf="loggedUser.type=='admin'">Fixer</a>
+        </div>
+    </footer>
+</section>

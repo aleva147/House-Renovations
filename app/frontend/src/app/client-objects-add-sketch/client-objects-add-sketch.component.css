@@ -1,0 +1,29 @@
+@media (min-width: 900px) {    
+    .actionButton {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .eraseButton {
+        width: 45%;
+    }
+    .roomOptionsContainer {
+        width: 30%;
+    }
+}
+
+@media (max-width: 900px) {    
+    .actionButton {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .eraseButton {
+        width: 50%;
+    }
+    .roomOptionsContainer {
+        width: 75%;
+    }
+}
+
+.actionsContainer {
+    width : 50%;
+} 

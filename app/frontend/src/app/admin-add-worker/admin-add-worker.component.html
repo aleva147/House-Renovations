@@ -1,0 +1,76 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Add Worker -->
+<div>
+    <div class="container text-center registerContainer">
+        <div class="bg-dark text-light py-3 fs-4">Add Worker</div>
+        <div class="bg-light-subtle py-4 registerDiv">
+            <form>
+                <div class="row mb-3 justify-content-center align-items-center">
+                    <div class="col-sm">
+                        <h5>Firstname:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="newFirstname" name="newFirstname" [(ngModel)]="newFirstname">
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center align-items-center">
+                    <div class="col-sm">
+                        <h5>Lastname:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="newLastname" name="newLastname" [(ngModel)]="newLastname">
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center align-items-center">
+                    <div class="col-sm">
+                        <h5>Phone:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="newPhone" name="newPhone" [(ngModel)]="newPhone">
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center align-items-center">
+                    <div class="col-sm">
+                        <h5>Mail:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="newMail" name="newMail" [(ngModel)]="newMail">
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center align-items-center">
+                    <div class="col-sm">
+                        <h5>Field:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="newField" name="newField" [(ngModel)]="newField">
+                    </div>
+                </div>
+                <div class="row mt-5 justify-content-center align-items-center mt-2">
+                    <div class="col-sm">
+                        <input class="btn my-1 btn-dark" style="width:40%" type='button' value='Add' (click)="add()">
+                    </div>
+                    <div class="col-sm">
+                        <input class="btn my-1 btn-dark" style="width:40%" type='button' value="Cancel" (click)="cancel()">
+                    </div>
+                </div>
+                <div [hidden]="message.length == 0">
+                    <br>
+                    <p class="error">{{message}}</p>
+                    <br>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

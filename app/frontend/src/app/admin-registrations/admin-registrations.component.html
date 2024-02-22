@@ -1,0 +1,101 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Options -->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start">
+    <div class="container">
+        <div class="d-md-flex justify-content-around align-middle text-center text-dark">
+            <div>
+                <h4>Filter by status: </h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="type1" value="pending" [(ngModel)]='status' 
+                    checked="true" (change)="filtered('pending')">
+                    <label class="form-check-label" for="type1">Pending</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="type2" value="approved" [(ngModel)]='status' (change)="filtered('approved')">
+                    <label class="form-check-label" for="type2">Approved</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="type3" value="rejected" [(ngModel)]='status' (change)="filtered('rejected')">
+                    <label class="form-check-label" for="type3">Rejected</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Users Table Section -->
+<section class="mt-5">
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm text-center align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Ag. Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Identification</th>
+                    <th scope="col">Description</th>
+                    <th scope="col" [hidden]="status != 'pending'">Approve</th>
+                    <th scope="col" [hidden]="status != 'pending'">Reject</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let r of selectedRequests">
+                    <td>
+                        <img src={{r.photobase64}} alt=""> <br>
+                        <b>{{r.username}}</b>
+                    </td>
+                    <td>{{r.mail}}</td>
+                    <td>{{r.type}}</td>
+                    <td>
+                        <p *ngIf="r.type=='client'">{{r.firstname}}</p>
+                        <p *ngIf="r.type=='agency'">/</p>
+                    </td>
+                    <td>
+                        <p *ngIf="r.type=='client'">{{r.lastname}}</p>
+                        <p *ngIf="r.type=='agency'">/</p>
+                    </td>
+                    <td>
+                        <p *ngIf="r.type=='client'">/</p>
+                        <p *ngIf="r.type=='agency'">{{r.name}}</p>
+                    </td>
+                    <td>
+                        <p *ngIf="r.type=='client'">/</p>
+                        <p *ngIf="r.type=='agency'">{{r.country}}, {{r.city}}, {{r.street}}</p>
+                    </td>
+                    <td>
+                        <p *ngIf="r.type=='client'">/</p>
+                        <p *ngIf="r.type=='agency'">{{r.identification}}</p>
+                    </td>
+                    <td>
+                        <p *ngIf="r.type=='client'">/</p>
+                        <p *ngIf="r.type=='agency'">{{r.description}}</p>
+                    </td>
+                    <td [hidden]="status != 'pending'">
+                        <a class="btn btn-outline-primary btn-sm" (click)="approve(r)">Approve</a>
+                    </td>
+                    <td [hidden]="status != 'pending'">
+                        <a class="btn btn-outline-primary btn-sm" (click)="reject(r)">Reject</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>    
+    
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

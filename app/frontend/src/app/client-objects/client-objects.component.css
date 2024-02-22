@@ -1,0 +1,40 @@
+img {
+    width: 80px;
+    height: 80px;
+}
+
+@media (min-width: 767px) {
+    .searchButton {
+        width: 200px;
+    }
+    .leftButton {
+        margin-right: 20px;
+    }
+    .rightButton {
+        margin-left: 20px;
+    }
+    .sortSection {
+        width: 700px;
+    }
+    .sortButton {
+        width: 250px;
+    }
+}
+
+@media (max-width: 767px) {
+    .searchButton {
+        width: 130px;
+    }
+    .leftButton {
+        margin-bottom: 5px;
+    }
+    .rightButton {
+        margin-top: 5px;
+    }
+    .h4search {
+        margin-top: 10px;
+    }
+    .sortSection {
+        width: 400px;
+    }
+}

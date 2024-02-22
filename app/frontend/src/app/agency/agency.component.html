@@ -1,0 +1,126 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Personal Information -->
+<div class="container text-center registerContainer">
+    <div class="bg-dark text-light py-3 fs-4">Personal Information</div>
+    <div class="bg-light-subtle py-4 registerDiv">
+        <form>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <img src={{agency.photobase64}} widht="200px" height="200px" alt="">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Name:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5" [hidden]="editMode==true">{{agency.name}}</p>
+                    <input type="text" class="form-control" id="newName" name="newName"
+                            [(ngModel)]="newName" [hidden]="editMode==false">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Country:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5" [hidden]="editMode==true">{{agency.country}}</p>
+                    <input type="text" class="form-control" id="newCountry" name="newCountry"
+                            [(ngModel)]="newCountry" [hidden]="editMode==false">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>City:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5" [hidden]="editMode==true">{{agency.city}}</p>
+                    <input type="text" class="form-control" id="newCity" name="newCity"
+                            [(ngModel)]="newCity" [hidden]="editMode==false">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Street:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5" [hidden]="editMode==true">{{agency.street}}</p>
+                    <input type="text" class="form-control" id="newStreet" name="newStreet"
+                            [(ngModel)]="newStreet" [hidden]="editMode==false">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Description:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5" [hidden]="editMode==true">{{agency.description}}</p>
+                    <textarea class="form-control" id="newDescription" name="newDescription"
+                            [(ngModel)]="newDescription" [hidden]="editMode==false"></textarea>
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Phone:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5" [hidden]="editMode==true">{{loggedUser.phone}}</p>
+                    <input type="text" class="form-control" id="newPhone" name="newPhone"
+                            [(ngModel)]="newPhone" [hidden]="editMode==false">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Mail:</h5>
+                </div>
+                <div class="col-sm">
+                    <p class="fs-5" [hidden]="editMode==true">{{loggedUser.mail}}</p>
+                    <input type="text" class="form-control" id="newMail" name="newMail"
+                            [(ngModel)]="newMail" [hidden]="editMode==false">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center" [hidden]="editMode==false">
+                <div class="col-sm">
+                    <h5>Photo:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="file" class="form-control" id="newPhoto" name="newPhoto"
+                        (change)="createPhotoData($event)">
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm">
+                    <input class=" btn btn-dark" style="width:40%" type='button' value='Edit' (click)="edit()" [hidden]="editMode==true">
+                    <input class=" btn btn-dark" style="width:40%" type='button' value='Confirm' (click)="confirm()" *ngIf="editMode" [disabled]="messagePhoto.length > 0">
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center mt-2">
+                <div class="col-sm">
+                    <input class=" btn btn-dark" style="width:40%" type='button' value='Change Password' (click)="changePassword()">
+                </div>
+            </div>
+            <div [hidden]="message.length == 0">
+                <br>
+                <p class="error">{{message}}</p>
+                <br>
+            </div>
+            <div [hidden]="messagePhoto.length == 0">
+                <br>
+                <p class="error">{{messagePhoto}}</p>
+                <br>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

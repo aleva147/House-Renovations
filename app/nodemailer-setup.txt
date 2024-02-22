@@ -1,0 +1,15 @@
+1) In the backend console: npm install nodemailer
+2) Make the button on the frontend call the method on the backend that is copied from the nodemailer website.
+   (You cannot have that method on the frontend instead of the backend).
+3) Setup the Google Account to support nodemailer's services:
+	- Manage your Google Account
+	- Security
+	- 2-Step-Verification
+	- Scroll to the bottom: App passwords
+	- Choose other app, name it nodemailer, and use the generated password in code you are writing. 
+
+	- This is now a separate password for your Google Account which the nodemailer can use to access it.
+	You can now treat this Google Account as the account of the web application you are creating 
+	and send emails to users who have forgotten their passwords 
+	(content and recipients are being set in the code, backend\src\controllers\"user.controller.ts").
+	This password will be valid forever, unless you remove it yourself in the Google Account settings.

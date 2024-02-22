@@ -1,0 +1,285 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Options -->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start" *ngIf="editMode==false">
+    <div class="container">
+        <div class="d-md-flex justify-content-around align-middle text-dark">
+            <div>
+                <h4>Showcase users: </h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="type" id="type1" value="clients" [(ngModel)]='type'>
+                    <label class="form-check-label" for="type1">Clients</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="type" id="type2" value="agencies" [(ngModel)]='type'>
+                    <label class="form-check-label" for="type2">Agencies</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container text-center mt-5">
+    <button class="btn btn-dark searchButton" (click)="addNew()">Add New</button>
+</div>
+
+<!-- Users Table Section -->
+<section class="mt-5" *ngIf="editMode==false">
+    <div class="container" *ngIf="type=='clients'">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm text-center align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete Account</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let c of allClients">
+                    <td>
+                        <img src={{c.photobase64}} alt=""> <br>
+                        <b>{{c.username}}</b>
+                    </td>
+                    <td>{{c.firstname}}</td>
+                    <td>{{c.lastname}}</td>
+                    <td>
+                        <a class="btn btn-outline-primary btn-sm" (click)="editClient(c)">Edit</a>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="removeClient(c)">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="container" *ngIf="type=='agencies'">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm text-center align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Workers</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete Account</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let a of allAgencies">
+                    <td>
+                        <img src={{a.photobase64}} alt=""> <br>
+                        <b>{{a.username}}</b>
+                    </td>
+                    <td>{{a.name}}</td>
+                    <td>
+                        <a class="btn btn-outline-primary btn-sm" href="adminAgencyWorkers" (click)="workers(a)">Workers</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-primary btn-sm" (click)="editAgency(a)">Edit</a>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="removeAgency(a)">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Edit Client -->
+<div class="container text-center registerContainer" *ngIf="editMode==true && type=='clients'">
+    <div class="bg-dark text-light py-3 fs-4">Edit Client</div>
+    <div class="bg-light-subtle py-4 registerDiv">
+        <form>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Firstname:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="newFirstname" name="newFirstname" [(ngModel)]="newFirstname">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Lastname:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="newLastname" name="newLastname" [(ngModel)]="newLastname">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Phone:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="newPhone" name="newPhone" [(ngModel)]="newPhone">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Mail:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="newMail" name="newMail" [(ngModel)]="newMail">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Photo:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="file" class="form-control" id="newPhoto" name="newPhoto" (change)="createPhotoData($event)">
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm">
+                    <input class=" btn btn-dark my-1" style="width:40%" type='button' value='Confirm' (click)="confirmClient()" [disabled]="messagePhoto.length > 0">
+                </div>
+                <div class="col-sm">
+                    <input class=" btn btn-dark my-1" style="width:40%" type='button' value='Cancel' (click)="editMode=false">
+                </div>
+            </div>
+            <div [hidden]="message.length == 0">
+                <br>
+                <p class="error">{{message}}</p>
+                <br>
+            </div>
+            <div [hidden]="messagePhoto.length == 0">
+                <br>
+                <p class="error">{{messagePhoto}}</p>
+                <br>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Edit Agency -->
+<div class="container text-center registerContainer" *ngIf="editMode==true && type=='agencies'">
+    <div class="bg-dark text-light py-3 fs-4">Edit Client</div>
+    <div class="bg-light-subtle py-4 registerDiv">
+        <form>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Name:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="newName" name="newName" [(ngModel)]="newName">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Country:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="newCountry" name="newCountry" [(ngModel)]="newCountry">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>City:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="newCity" name="newCity" [(ngModel)]="newCity">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Street:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="newStreet" name="newStreet" [(ngModel)]="newStreet">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Description:</h5>
+                </div>
+                <div class="col-sm">
+                    <textarea class="form-control" id="newDescription" name="newDescription" [(ngModel)]="newDescription"></textarea>
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Phone:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="newPhone" name="newPhone" [(ngModel)]="newPhone">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Mail:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="newMail" name="newMail" [(ngModel)]="newMail">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Photo:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="file" class="form-control" id="newPhoto" name="newPhoto" (change)="createPhotoData($event)">
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-sm">
+                    <input class=" btn btn-dark my-1" style="width:40%" type='button' value='Confirm' (click)="confirmAgency()" [disabled]="messagePhoto.length > 0">
+                </div>
+                <div class="col-sm">
+                    <input class=" btn btn-dark my-1" style="width:40%" type='button' value='Cancel' (click)="editMode=false">
+                </div>
+            </div>
+            <div [hidden]="message.length == 0">
+                <br>
+                <p class="error">{{message}}</p>
+                <br>
+            </div>
+            <div [hidden]="messagePhoto.length == 0">
+                <br>
+                <p class="error">{{messagePhoto}}</p>
+                <br>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Remove Confirmation Modal -->
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Remove Account Confirmation</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row mb-3">
+                    <h6 style="color:red">Are you sure? This action cannot be undone.</h6>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="removeConfirmed()">Confirm</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

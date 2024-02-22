@@ -1,0 +1,28 @@
+img {
+    width: 80px;
+    height: 80px;
+}
+
+@media (min-width: 769px) {
+    .searchButton {
+        width: 200px;
+    }
+    .sortSection {
+        width: 600px;
+    }
+    .sortButton {
+        width: 250px;
+    }
+}
+
+@media (max-width: 769px) {
+    .searchButton {
+        width: 130px;
+    }
+    .h4search {
+        margin-top: 10px;
+    }
+    .sortSection {
+        width: 400px;
+    }
+}

@@ -1,0 +1,24 @@
+{    
+	"client": "pera",
+	"type": "house",
+	"address": "England, Liverpool, Klopp's Street 22",
+	"numOfRooms": 2,
+	"sqFootage" : 120,
+	"sketch": [{
+		"x": 80,
+		"y": 20,
+		"width": 120,
+		"height": 40,
+		"doorWall": "bottom",
+		"doorPosition": 40,
+		"status": "none"
+	}, {
+		"x": 200,
+		"y": 20,
+		"width": 40,
+		"height": 40,
+		"doorWall": "left",
+		"doorPosition": 15,
+		"status": "none"
+	}]
+}

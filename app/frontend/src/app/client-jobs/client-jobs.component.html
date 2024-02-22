@@ -1,0 +1,197 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Filter Section-->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start">
+    <div class="container">
+        <div class="d-md-flex justify-content-around align-middle text-dark text-center">
+            <div>
+                <h4>Filter jobs: </h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="type" id="type1" value="request" [(ngModel)]='type'>
+                    <label class="form-check-label" for="type1">Requests</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="type" id="type2" value="active" [(ngModel)]='type'>
+                    <label class="form-check-label" for="type2">Active</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="type" id="type3" value="finished" [(ngModel)]='type'>
+                    <label class="form-check-label" for="type3">Finished</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Requests Section -->
+<section *ngIf="type == 'request'" class="mt-5">
+    <div class="container">
+        <div class="table-responsive" *ngIf="allRequests.length > 0">
+            <table class="table table-bordered table-hover table-sm text-center align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Object</th>
+                    <th scope="col">Agency</th>
+                    <th scope="col">Starting</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Accept</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let r of allRequests">
+                    <td [style]="colorMe(r.status)">{{r.objectAddress}}</td>
+                    <td [style]="colorMe(r.status)">{{r.agencyName}}</td>
+                    <td [style]="colorMe(r.status)">{{r.starting}}</td>
+                    <td [style]="colorMe(r.status)">{{r.deadline}}</td>
+                    <td [style]="colorMe(r.status)">{{r.status}}</td>
+                    <td [style]="colorMe(r.status)">
+                        <p *ngIf="r.status=='accepted'" class="pt-3">{{r.cost}}</p>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" (click)="acceptRequest(r)" *ngIf="r.status=='accepted'">Accept</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" (click)="refuseRequest(r)" *ngIf="r.status=='accepted'">Refuse</button>
+                        <button class="btn btn-outline-primary btn-sm" (click)="refuseRequest(r)" *ngIf="r.status=='refused'">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="allRequests.length == 0">
+            <div class="container text-center text-white">
+                <h3><i>There are no job requests.</i></h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Active Section -->
+<section *ngIf="type == 'active'" class="mt-5">
+    <div class="container">
+        <div class="table-responsive" *ngIf="allActive.length > 0">
+            <table class="table table-bordered table-hover table-sm text-center align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Object</th>
+                    <th scope="col">Agency</th>
+                    <th scope="col">Starting</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col">Progress</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let r of allActive">
+                    <td>{{r.objectAddress}}</td>
+                    <td>{{r.agencyName}}</td>
+                    <td>{{r.starting}}</td>
+                    <td>{{r.deadline}}</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" (click)="viewProgress(r)">View Progress</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="allActive.length == 0">
+            <div class="container text-center text-white">
+                <h3><i>There are no active jobs.</i></h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Finished Section -->
+<section *ngIf="type == 'finished'" class="mt-5">
+    <div class="container">
+        <div class="table-responsive" *ngIf="allFinished.length > 0">
+            <table class="table table-bordered table-hover table-sm text-center align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Object</th>
+                    <th scope="col">Agency</th>
+                    <th scope="col">Started</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Terminated</th>
+                    <th scope="col">Rate</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let r of allFinished">
+                    <td>{{r.objectAddress}}</td>
+                    <td>{{r.agencyName}}</td>
+                    <td>{{r.starting}}</td>
+                    <td>
+                        <p class="pt-3">{{r.cost}}</p>
+                    </td>
+                    <td>{{r.status == 'terminated' ? 'Yes' : 'No'}}</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" (click)="rate(r)" data-bs-toggle="modal" data-bs-target="#exampleModal">Rate</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="allFinished.length == 0">
+            <div class="container text-center text-white">
+                <h3><i>There are no previously finished jobs.</i></h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Rate Modal -->
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Rate Agency Services</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row mb-3">
+                    <div class="col-sm">
+                        <h5>Comment:</h5>
+                    </div>
+                    <div class="col-sm">
+                        <textarea class="form-control" name="comment" cols="30" rows="5" [(ngModel)]="commentText" maxlength="140"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm">
+                        <h5>Grade (1-10):</h5>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" class="form-control" id="grade" name="grade" [(ngModel)]="grade">
+                    </div>
+                </div>
+                <div *ngIf="message.length > 0">
+                    <p style="color:red">{{message}}</p>
+                </div>
+                <div *ngIf="message2.length > 0">
+                    <p style="color:blue">{{message2}}</p>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="removeRating()" [disabled]="existingComment == false">Remove Rating</button>
+            <button type="button" class="btn btn-primary" (click)="confirmRate()">Confirm</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

@@ -1,0 +1,61 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+    
+<!-- Hire Panel -->
+<div class="container text-center registerContainer">
+    <div class="bg-dark text-light py-3 fs-4">Hire Agency</div>
+    <div class="bg-light-subtle py-4 registerDiv">
+        <form>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Object:</h5>
+                </div>
+                <div class="col-sm test">
+                    <select class="form-select" name="selectObject" id="selectObject" aria-label="Select an object" [(ngModel)]="selectedObject">
+                        <option *ngFor="let o of objectts" value="{{o.id}}">{{o.address}}</option>
+                    </select>                       
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Starting:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="date" name="begin" id="begin" [(ngModel)]="startDate">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Deadline:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="date" name="end" id="end" [(ngModel)]="endDate">
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-center mt-2">
+                <div class="col-sm">
+                    <input class=" btn btn-dark" type='button' value='Cancel' (click)="cancel()">
+                </div>
+                <div class="col-sm">
+                    <input class=" btn btn-dark" type='button' value='Send Request' (click)="sendRequest()">
+                </div>
+            </div>
+            <div [hidden]="message.length == 0">
+                <br>
+                <p class="error">{{message}}</p>
+                <br>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

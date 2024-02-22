@@ -1,0 +1,60 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<app-header></app-header>
+
+<!-- About Selection -->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start mb-5">
+    <div class="sortSection container text-center text-black">
+        <form>
+            <div class="row py-1 align-items-center">
+                <div class="col">
+                    <h5>Agency name: </h5>
+                </div>
+                <div class="col pt-1">
+                    <h5>{{selectedAgency.name}}</h5>
+                </div>
+            </div>
+            <div class="row py-1 align-items-center">
+                <div class="col">
+                    <h5>Address: </h5>
+                </div>
+                <div class="col pt-1">
+                    <h5>{{selectedAgency.country}}, {{selectedAgency.city}}, <br> {{selectedAgency.street}}</h5>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</section>
+
+
+<!-- Comments Section -->
+<section>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm text-center align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Client</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Grade</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let c of comments">
+                    <td>You have to login.</td>
+                    <td>{{c.text}}</td> 
+                    <td>{{c.grade}}/10</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Fill Space (so that the footer is always at the bottom of the screen)-->
+<div style="flex-grow:1"></div>
+
+<app-footer></app-footer>
+
+</div>

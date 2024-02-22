@@ -1,0 +1,84 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Edit Object Form -->
+<div class="container text-center registerContainer">
+    <div class="bg-dark text-light py-3">Edit Object</div>
+    <div class="bg-light-subtle py-4 registerDiv">
+        <form>
+            <div class="row mb-3">
+                <label for="inputType" class="col-sm-2 col-form-label">Type:</label>
+                <div class="col-sm-10">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="type1" value="house" [(ngModel)]='type' checked>
+                        <label class="form-check-label" for="type1" >House</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="type2" value="apartment" [(ngModel)]='type'>
+                        <label class="form-check-label" for="type2">Apartment</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3 justify-content-center">
+                <label for="inputCountry" class="col-sm-2 col-form-label">Country:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="country" placeholder="Enter country" name="country" [(ngModel)]="country">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputCity" class="col-sm-2 col-form-label">City:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="city" placeholder="Enter city" name="city" [(ngModel)]='city'>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputStreet" class="col-sm-2 col-form-label">Street:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="street" placeholder="Enter street" name="street" [(ngModel)]="street">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputRooms" class="col-sm-2 col-form-label">Number of rooms:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="numOfRooms" placeholder="Enter num of rooms" name="numOfRooms" [(ngModel)]="numOfRooms">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputSqFootage" class="col-sm-2 col-form-label">Sq. footage:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="sqFootage" placeholder="Enter sq. footage" name="sqFootage" [(ngModel)]="sqFootage">
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="row mb-3 regButtonDiv">
+                <div class="col-sm-10">
+                    <input class="mt-4 btn btn-dark" style="width:60%" type='button' value='Continue' (click)='continue()'>
+                </div>
+                <div class="col-sm-10">
+                    <input class="mt-4 btn btn-dark" style="width:60%" type='button' value='Cancel' (click)='cancel()'>
+                </div>
+            </div>
+
+            <!-- Error messages -->
+            <div class="errorContainer ">
+                <div [hidden]="message.length == 0">
+                    <br>
+                    <p class="error">{{message}}</p>
+                    <br>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

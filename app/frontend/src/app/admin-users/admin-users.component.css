@@ -1,0 +1,98 @@
+img {
+    width: 80px;
+    height: 80px;
+}
+
+@media (min-width: 769px) {
+    .searchButton {
+        width: 200px;
+    }
+    .sortSection {
+        width: 700px;
+    }
+    .sortButton {
+        width: 250px;
+    }
+}
+
+@media (max-width: 769px) {
+    .searchButton {
+        width: 130px;
+    }
+    .h4search {
+        margin-top: 10px;
+    }
+    .sortSection {
+        width: 400px;
+    }
+}
+
+@media (min-width: 1400px) {    
+    .registerContainer {
+        width:40%;
+        padding-top: 50px;
+    }
+    .registerDiv {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .regButtonDiv {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 1400px) {    
+    .registerContainer {
+        width:60%;
+        padding-top: 50px;
+    }
+    .registerDiv {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .regButtonDiv {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 900px) {    
+    .registerContainer {
+        width:80%;
+        padding-top: 50px;
+    }
+    .registerDiv {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .regButtonDiv {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 650px) {    
+    .registerContainer {
+        width:95%;
+        padding-top: 50px;
+    }
+    .registerDiv {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .regButtonDiv {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 575px) {    
+    .registerContainer {
+        width:95%;
+        padding-top: 50px;
+    }
+    .registerDiv {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .regButtonDiv {
+        margin-left: 0px;
+    }
+}

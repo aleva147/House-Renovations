@@ -1,0 +1,118 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Actions -->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start">
+    <div class="container">
+        <div class="d-md-flex justify-content-center align-middle text-dark">
+            <div class="m-1">
+                <button class="btn btn-outline-dark searchButton leftButton" (click)="addObjectt()">Create Object</button>
+            </div>
+            <div class="m-1">
+                <button class="btn btn-outline-dark searchButton rightButton" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload Object</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FileUpload Modal -->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Upload Object</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row mb-3">
+                    <label>Select JSON file:</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" id="file" name="file" (change)="onFileChanged($event)">
+                    </div>
+                </div>
+                <div class="pt-3">
+                    <p style="color:red" *ngIf="message != ''">{{message}}</p>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
+            <button type="button" class="btn btn-primary" (click)="upload()" data-bs-dismiss="modal" [disabled]="error == true">Upload</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- All Objects Section -->
+<section>
+    <div class="container mt-5">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm text-center align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Rooms</th>
+                    <th scope="col">Sq. Footage</th>
+                    <th scope="col">Sketch</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let o of allObjectts">
+                    <td>{{o.type}}</td>
+                    <td>{{o.address}}</td>
+                    <td>{{o.numOfRooms}}</td>
+                    <td>{{o.sqFootage}}</td>
+                    <td>
+                        <a class="btn btn-outline-primary btn-sm" href="clientObjectsViewSketch" (click)="seeSketch(o)">View Sketch</a>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" (click)="editObjectt(o)" *ngIf="o.workInProgress != true">Edit</button>
+                        <p class="pt-2" style="font-size: small; color:blue;" *ngIf="o.workInProgress == true">*active job*</p>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="remove(o)" *ngIf="o.workInProgress != true">Remove</button>
+                        <p class="pt-2" style="font-size: small; color:blue;" *ngIf="o.workInProgress == true">*active job*</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Remove Confirmation Modal -->
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Remove Object Confirmation</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="row mb-3">
+                    <h6 style="color:red">Are you sure? This action cannot be undone.</h6>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="removeConfirmed()">Confirm</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

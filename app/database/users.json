@@ -1,0 +1,112 @@
+[
+    {
+        "username": "pera",
+        "password" : "pera2@P",
+        "phone" : "062-243-2590",
+        "mail" : "premimptemp@gmail.com",
+        "type": "client",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    },
+    {
+        "username": "maja",
+        "password" : "maja2@M",
+        "phone" : "061-2929-801",
+        "mail" : "maja@gmail.com",
+        "type": "admin",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    },
+    {
+        "username": "jovana",
+        "password" : "jova2@J",
+        "phone" : "065-5555-454",
+        "mail" : "jovana@gmail.com",
+        "type": "admin",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    },
+    {
+        "username": "hammers",
+        "password" : "ham2@Hh",
+        "phone" : "063-554-8492",
+        "mail" : "hammers@gmail.com",
+        "type": "agency",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    },
+    {
+        "username": "shovels",
+        "password" : "sho2@Ss",
+        "phone" : "065-995-8483",
+        "mail" : "shovels@gmail.com",
+        "type": "agency",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    },
+    {
+        "username": "cleaners",
+        "password" : "cle@2Cc",
+        "phone" : "060-000-0004",
+        "mail" : "cleaners@gmail.com",
+        "type": "agency",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    },
+    {
+        "username": "marios",
+        "password" : "mar2@Mm",
+        "phone" : "064-454-2935",
+        "mail" : "marios@gmail.com",
+        "type": "agency",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    },
+    {
+        "username": "paja",
+        "password" : "paja2@P",
+        "phone" : "060-000-0005",
+        "mail" : "paja@gmail.com",
+        "type": "client",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    },
+    {
+        "username": "james",
+        "password" : "jame2@J",
+        "phone" : "060-747-2033",
+        "mail" : "james@gmail.com",
+        "type": "client",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    },
+    {
+        "username": "lucky",
+        "password" : "luc2@Ll",
+        "phone" : "060-120-0006",
+        "mail" : "lucky@gmail.com",
+        "type": "agency",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    },
+    {
+        "username": "conans",
+        "password" : "con2@Co",
+        "phone" : "069-3222-999",
+        "mail" : "conans@gmail.com",
+        "type": "agency",
+		"temppass": null,
+		"validuntil": null,
+		"photoname": "default"
+    }
+]

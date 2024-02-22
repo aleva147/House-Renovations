@@ -1,0 +1,76 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- About Selection -->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start mb-5">
+    <div class="sortSection container text-center text-black">
+        <form>
+            <div class="row py-1 align-items-center">
+                <div class="col">
+                    <h5>Agency name: </h5>
+                </div>
+                <div class="col pt-1">
+                    <h5>{{selectedAgency.name}}</h5>
+                </div>
+            </div>
+            <div class="row py-1 align-items-center">
+                <div class="col">
+                    <h5>Address: </h5>
+                </div>
+                <div class="col pt-1">
+                    <h5>{{selectedAgency.country}}, {{selectedAgency.city}}, <br> {{selectedAgency.street}}</h5>
+                </div>
+            </div>
+            <div class="row py-1 align-items-center">
+                <div class="col">
+                    <button class="btn btn-dark sortButton" (click)="hire()">HIRE</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</section>
+
+<!-- Comments Section -->
+<section>
+    <div *ngIf="comments.length > 0">
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Client</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of comments">
+                            <td>
+                                <img src={{c.photobase64}} alt="Profile picture"/> <br>
+                                <b>{{c.username}}</b>
+                            </td>
+                            <td>{{c.text}}</td> 
+                            <td>{{c.grade}}/10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>  
+        </div>
+    </div>
+    <div *ngIf="comments.length == 0">
+        <div class="container text-center text-white mt-3">
+            <h3><i>No existing comments.</i></h3>
+        </div>
+    </div>
+</section>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

@@ -1,0 +1,26 @@
+@media (min-width: 1400px) {    
+    .reqsTable {
+        width:30%;
+    }
+}
+
+@media (max-width: 1400px) {    
+    .reqsTable {
+        width:50%;
+    }
+}
+
+@media (max-width: 650px) {  
+    .reqsTable {
+        width:70%;
+    }
+}
+
+@media (max-width: 575px) { 
+    .workersTable {
+        width: 90%
+    }
+    .reqsTable {
+        width:70%;
+    }
+}

@@ -1,0 +1,142 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Active Jobs Section -->
+<section class="mt-5">
+    <div *ngIf="activeJobs.length > 0">
+        <div class="container text-center text-white">
+            <h3><b>Active Jobs</b></h3>
+        </div>
+        <div class="container workersTable mt-2">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm text-center align-middle">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Client</th>
+                        <th scope="col">Object</th>
+                        <th scope="col">Starting</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col">Payment</th>
+                        <th scope="col">Progress</th>
+                        <th scope="col">Termination</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let r of activeJobs">
+                        <td>
+                            <a href="adminClientDetails" target="_blank" (click)="clientDetails(r)">{{r.client}}</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" href="adminObjecttDetails" target="_blank" (click)="viewObject(r)">View</a>
+                        </td>
+                        <td>{{r.starting}}</td>
+                        <td>{{r.deadline}}</td>
+                        <td>{{r.cost}}€</td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm" (click)="viewProgress(r)">View Progress</button>
+                        </td>
+                        <td>
+                            <div *ngIf="r.status == 'termination'">
+                                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="viewTermination(r)">View</button>
+                            </div>
+                            <div *ngIf="r.status != 'termination'">
+                                /
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="activeJobs.length == 0">
+        <div class="container text-center text-white">
+            <h3><i>There are no active jobs.</i></h3>
+        </div>
+    </div>
+</section>
+
+<!-- Termination Modal -->
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Termination Request</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Reason:</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="reason" name="reason" [(ngModel)]="selectedJob.reason">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="declineTermination()">Decline</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="acceptTermination()">Accept</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Finished Jobs Section -->
+<section class="mt-5">
+    <div *ngIf="finishedJobs.length > 0">
+        <div class="container text-center text-white">
+            <h3><b>Finished Jobs</b></h3>
+        </div>
+        <div class="container workersTable mt-2">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm text-center align-middle">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Client</th>
+                        <th scope="col">Object</th>
+                        <th scope="col">Starting</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col">Terminated</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let r of finishedJobs">
+                        <td>
+                            <a href="adminClientDetails" target="_blank" (click)="clientDetails(r)">{{r.client}}</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" href="adminObjecttDetails" target="_blank" (click)="viewObject(r)">View</a>
+                        </td>
+                        <td>{{r.starting}}</td>
+                        <td>{{r.deadline}}</td>
+                        <td>
+                            <div *ngIf="r.status == 'terminated'">
+                                Yes
+                            </div>
+                            <div *ngIf="r.status == 'regularly'">
+                                No
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="finishedJobs.length == 0">
+        <div class="container text-center text-white">
+            <h3><i>There are no finished jobs.</i></h3>
+        </div>
+    </div>
+</section>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

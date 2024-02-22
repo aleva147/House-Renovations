@@ -1,0 +1,40 @@
+@media (min-width: 1400px) {    
+    .registerContainer {
+        width:40%;
+        padding-top: 40px;
+    }
+}
+
+@media (max-width: 1400px) {    
+    .registerContainer {
+        width:60%;
+        padding-top: 40px;
+    }
+}
+
+@media (max-width: 900px) {    
+    .registerContainer {
+        width:80%;
+        padding-top: 40px;
+    }
+}
+
+@media (max-width: 650px) {    
+    .registerContainer {
+        width:95%;
+    }
+}
+
+@media (max-width: 575px) {    
+    .registerContainer {
+        width:95%;
+        padding-top: 0;
+    }
+    .workersTable {
+        width: 90%
+    }
+}
+
+.error {
+    color:red;
+}

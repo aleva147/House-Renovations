@@ -1,0 +1,111 @@
+[
+    {
+		"id": 1,
+		"agency": "hammers",
+        "firstname": "John",
+        "lastname" : "Doe",
+        "phone" : "060-000-0000",
+        "mail" : "johndoe@gmail.com",
+        "field": "painter",
+		"job": null
+    },
+    {
+		"id": 2,
+		"agency": "hammers",
+        "firstname": "Mark",
+        "lastname" : "Maker",
+        "phone" : "061-100-0000",
+        "mail" : "markemaker@gmail.com",
+        "field": "plumber",
+		"job": null
+    },
+	{
+		"id": 3,
+		"agency": "hammers",
+        "firstname": "Jake",
+        "lastname" : "Jakeson",
+        "phone" : "062-200-0000",
+        "mail" : "jakejakeson@gmail.com",
+        "field": "carpenter",
+		"job": null
+    },
+	{
+		"id": 4,
+		"agency": "hammers",
+        "firstname": "Lee",
+        "lastname" : "Liamson",
+        "phone" : "063-300-0000",
+        "mail" : "leeliamson@gmail.com",
+        "field": "electrician",
+		"job": null
+    },
+	{
+		"id": 5,
+		"agency": "hammers",
+        "firstname": "Ben",
+        "lastname" : "Benner",
+        "phone" : "064-400-0000",
+        "mail" : "benbenner@gmail.com",
+        "field": "bricklayer",
+		"job": null
+    },
+	{
+		"id": 6,
+		"agency": "hammers",
+        "firstname": "Ned",
+        "lastname" : "Flanders",
+        "phone" : "065-500-0000",
+        "mail" : "nedflanders@gmail.com",
+        "field": "roofer",
+		"job": null
+    },{
+		"id": 7,
+		"agency": "shovels",
+        "firstname": "Homer",
+        "lastname" : "Simpson",
+        "phone" : "066-666-0000",
+        "mail" : "homersimpson@gmail.com",
+        "field": "painter",
+		"job": null
+    },
+    {
+		"id": 8,
+		"agency": "shovels",
+        "firstname": "Lisa",
+        "lastname" : "Simpson",
+        "phone" : "067-777-0000",
+        "mail" : "lisasimpson@gmail.com",
+        "field": "plumber",
+		"job": null
+    },
+	{
+		"id": 9,
+		"agency": "shovels",
+        "firstname": "Bart",
+        "lastname" : "Simpson",
+        "phone" : "068-888-0000",
+        "mail" : "bartsimpson@gmail.com",
+        "field": "carpenter",
+		"job": null
+    },
+	{
+		"id": 10,
+		"agency": "shovels",
+        "firstname": "Marge",
+        "lastname" : "Simpson",
+        "phone" : "069-999-0000",
+        "mail" : "margesimpson@gmail.com",
+        "field": "electrician",
+		"job": null
+    },
+	{
+		"id": 11,
+		"agency": "shovels",
+        "firstname": "Maggie",
+        "lastname" : "Simpson",
+        "phone" : "061-111-0000",
+        "mail" : "maggiesimpson@gmail.com",
+        "field": "bricklayer",
+		"job": null
+    }
+]

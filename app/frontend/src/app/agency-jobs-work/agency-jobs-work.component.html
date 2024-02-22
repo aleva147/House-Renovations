@@ -1,0 +1,111 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Actions -->
+<section class="bg-secondary-subtle text-light py-4 text-center text-md-start">
+    <div class="container actionsContainer" >
+        <div class="d-md-flex justify-content-around align-middle text-dark">
+            <div class="m-1 text-center"> 
+                <h5>Available workers: {{availableWorkers.length}}</h5>
+                <h5>Workers assigned to this object: {{assignedWorkers.length}}</h5>
+                <button class="btn btn-outline-dark actionButton" (click)="return()">Return</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Irregular Messages  -->
+<div class="container mt-2" *ngIf="messageOverall != ''">
+    <div class="text-center fs-5" >
+        <b class="error">{{messageOverall}}</b>
+    </div>
+</div>
+
+<!-- Canvas -->
+<div class="container mt-4">
+    <div class="text-center" >
+        <canvas #canvas style="border: 1px solid"></canvas>
+    </div>
+</div>
+
+<!-- Panel for Rooms -->
+<section class="bg-secondary-subtle text-light mt-3 py-2 text-center text-md-start">
+
+    <div class="text-center text-dark" *ngIf="messagePanel.length > 0">
+        <div>
+            <b style="color:red">{{messagePanel}}</b>
+        </div>
+    </div>
+
+    <div class="text-center text-dark" *ngIf="selectedRoom == null">
+        <div class="col-sm">
+            <b>No room selected.</b>
+        </div>
+    </div>
+
+    <div class="text-center text-dark" *ngIf="selectedRoom != null && selectedRoom.status == 'finished'">
+        <div class="col-sm">
+            <b style="color:green">Room finished!</b>
+        </div>
+    </div>
+
+    <!-- Changing existing room -->
+    <div class="container optionsContainer text-center pt-2 mt-2" *ngIf="selectedRoom != null">
+        <div class="row mb-3 justify-content-center align-items-center text-dark" >
+            <div class="col-sm">
+                <h5>Assigned workers:</h5>
+            </div>
+            <div class="col-sm text-center">
+                <p *ngIf="selectedRoom.workers.length == 0">None</p>
+                <ol>
+                    <li *ngFor="let w of selectedRoom.workersNames">{{w}}</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <h5>Add Worker:</h5>
+            </div>
+            <div class="col-sm">
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="workerToAdd" [disabled]="availableWorkers.length == 0 || selectedRoom.progress == 100">
+                    <option *ngFor="let w of availableWorkers" value="{{w.id}}">{{w.firstname}} {{w.lastname}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <button class="btn btn-outline-dark actionButton" (click)="addWorker()" [disabled]="availableWorkers.length == 0 || selectedRoom.progress == 100">Add</button>
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <h5>Progress: (0-100)</h5>
+            </div>
+            <div class="col-sm text-center">
+                <input type="text" class="form-control" id="progress" name="progress" [(ngModel)]="progress" [disabled]="messageOverall != '' || selectedRoom.progress == 100 || selectedRoom.workers.length == 0">
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-center align-items-center text-dark">
+            <div class="col-sm">
+                <button class="btn btn-outline-dark actionButton" (click)="updateProgress()" [disabled]="messageOverall != '' || selectedRoom.progress == 100 || selectedRoom.workers.length == 0">Update Progress</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<section>
+    <div class="mt-5">
+        <div class="text-center text-white p-3 bg-black">
+            © 2023 Copyright:
+            <a class="text-white" href="agency">Fixer</a>
+        </div>
+    </div>
+</section>
+
+</div>

@@ -1,0 +1,93 @@
+footer {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+}
+
+input:invalid {
+    color: red;
+}
+
+.error {
+    color:red;
+}
+
+@media (min-width: 1400px) {    
+    .registerContainer {
+        width:40%;
+        margin-top: 55px;
+    }
+
+    .registerDiv {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .regButtonDiv {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 1400px) {    
+    .registerContainer {
+        width:60%;
+        margin-top: 50px;
+    }
+    .registerDiv {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .regButtonDiv {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 900px) {    
+    .registerContainer {
+        width:80%;
+    }
+    .registerDiv {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .regButtonDiv {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 650px) {    
+    .registerContainer {
+        width:95%;
+    }
+    .registerDiv {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .regButtonDiv {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 575px) {    
+    .registerContainer {
+        width:95%;
+    }
+    .registerDiv {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .regButtonDiv {
+        margin-left: 0px;
+    }
+    .workersTable {
+        width: 90%
+    }
+    img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.form-control {
+    margin-left: 20px;
+    width: 95%;
+}

@@ -1,0 +1,108 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Register Form -->
+<div class="container text-center registerContainer">
+    <div class="bg-dark text-light py-3">Add New Client</div>
+    <div class="bg-light-subtle py-4 registerDiv">
+        <form>
+            <div class="row mb-3 justify-content-center">
+                <label for="inputUsername" class="col-sm-2 col-form-label">Username:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="username" placeholder="Enter username" name="username"[(ngModel)]="username">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" [(ngModel)]='password'
+                    pattern="[a-z](?=.*\d)(?=.*[A-Z])(?=.*[@#$%^&+=]).{6,11}|[A-Z](?=.*\d)(?=.*[a-z])(?=.*[@#$%^&+=]).{6,11}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputPassword2" class="col-sm-2 col-form-label">Repeat password:</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password2" placeholder="Repeat password" name="password2" [(ngModel)]='password2'>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputPhone" class="col-sm-2 col-form-label">Phone:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="phone" placeholder="Enter phone number" name="phone" [(ngModel)]="phone">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputMail" class="col-sm-2 col-form-label">Mail:</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="mail" placeholder="Enter mail" name="mail" [(ngModel)]="mail">
+                </div>
+            </div>
+
+            <!-- Image upload -->
+            <div class="row mb-3">
+                <label for="inputPhoto" class="col-sm-2 col-form-label">Profile photo (optional):</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="photo" name="photo" (change)="createPhotoData($event)">
+                </div>
+            </div>
+
+            <!-- Additional fields for Client -->
+            <div class="row mb-3">
+                <label for="inputName" class="col-sm-2 col-form-label">Firstname:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="firstname" placeholder="Enter firstname" name="firstname" [(ngModel)]="firstname" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputCountry" class="col-sm-2 col-form-label">Lastname:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastname" placeholder="Enter lastname" name="lastname" [(ngModel)]="lastname">
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="row mb-3 regButtonDiv">
+                <div class="col-sm-10">
+                    <input class="mt-4 btn btn-dark" style="width:60%" type='button' value='Register' (click)='register()' [disabled]="messagePhoto.length > 0">
+                </div>
+            </div>
+
+            <!-- Error messages -->
+            <div class="errorContainer ">
+                <div [hidden]="showPasswordError != true">
+                    <p class="error">Password does not match the needed format. Password must:</p>
+                    <ul class="error">
+                        <li>contain at least one lowercase letter</li>
+                        <li>contain at least one uppercase letter</li>
+                        <li>contain at least one number</li>
+                        <li>contain at least one special character from group: @,#,$,%,^,&,+,=</li>
+                        <li>be between 7 and 12 characters long</li>
+                        <li>begin with a letter</li>
+                    </ul>
+                </div>
+            
+                <div [hidden]="message.length == 0">
+                    <br>
+                    <p class="error">{{message}}</p>
+                    <br>
+                </div>
+            
+                <div [hidden]="messagePhoto.length == 0">
+                    <br>
+                    <p class="error">{{messagePhoto}}</p>
+                    <br>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>

@@ -1,0 +1,39 @@
+@media (min-width: 1400px) {    
+    .registerContainer {
+        width:40%;
+        margin-top: 55px;
+        padding-top: 50px;
+    }
+}
+
+@media (max-width: 1400px) {    
+    .registerContainer {
+        width:60%;
+        margin-top: 50px;
+        padding-top: 50px;
+    }
+}
+
+@media (max-width: 900px) {    
+    .registerContainer {
+        width:80%;
+        padding-top: 50px;
+    }
+}
+
+@media (max-width: 650px) {    
+    .registerContainer {
+        width:95%;
+        padding-top: 50px;
+    }
+}
+
+@media (max-width: 575px) {
+    .test {
+        width: 80%;
+    }
+    .btn {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}

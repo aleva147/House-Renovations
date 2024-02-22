@@ -1,0 +1,38 @@
+[
+    {
+		"id": 1,
+        "username": "mike",
+        "password" : "Mike2@M",
+        "phone" : "060-000-0000",
+        "mail" : "mike@gmail.com",
+        "type": "client",
+		"photoname": "defaultPhoto.png",
+		"firstname": "Mike",
+		"lastname": "Michael",
+		"name": null,
+		"country": null,
+		"city": null,
+		"street": null,
+		"identification": null,
+		"description": null,
+		"status": "pending"
+    },
+    {
+		"id": 2,
+        "username": "joe",
+        "password" : "Joe2@Jj",
+        "phone" : "060-000-0000",
+        "mail" : "joe@gmail.com",
+        "type": "agency",
+		"photoname": "defaultLogo.jpg",
+		"firstname": null,
+		"lastname": null,
+		"name": "Joe's agency",
+		"country": "Ireland",
+		"city": "Dublin",
+		"street": "St. Patrick's Street 22",
+		"identification": 800008,
+		"description": "Joe's agency for house repairs",
+		"status": "pending"
+    }
+]

@@ -1,0 +1,135 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: lightslategray;">
+
+<!-- Header -->
+<app-header></app-header>
+
+<!-- All Requests Section -->
+<section class="mt-5">
+    <div *ngIf="newRequests.length > 0">
+        <div class="container text-center text-white">
+            <h3><b>New Job Requests</b></h3>
+        </div>
+        <div class="container workersTable mt-2">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm text-center align-middle">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Client</th>
+                        <th scope="col">Object</th>
+                        <th scope="col">Starting</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col">Accept</th>
+                        <th scope="col">Refuse</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let r of newRequests">
+                        <td>
+                            <a href="agencyClientDetails" target="_blank" (click)="clientDetails(r)">{{r.client}}</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" href="agencyObjecttDetails" target="_blank" (click)="viewObject(r)">View</a>
+                        </td>
+                        <td>{{r.starting}}</td>
+                        <td>{{r.deadline}}</td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="accept(r)">Accept</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm" (click)="refuse(r)">Refuse</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="newRequests.length == 0">
+        <div class="container text-center text-white">
+            <h3><i>There are no new job requests.</i></h3>
+        </div>
+    </div>
+</section>
+
+<!-- Accept Request Modal -->
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Send Offer</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row mb-3 justify-content-center align-items-center">
+                <div class="col-sm">
+                    <h5>Cost: [€]</h5>
+                </div>
+                <div class="col-sm">
+                    <input type="text" class="form-control" id="cost" name="cost" [(ngModel)]="cost">
+                </div>
+            </div>
+            <div *ngIf="message.length > 0">
+                <p [style]="error == true ? 'color:red' : 'color:blue'">{{message}}</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="sendOffer()" [disabled]="message=='Successfully sent.'">Send Offer</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Active Jobs Section -->
+<section class="mt-5">
+    <div *ngIf="activeJobs.length > 0">
+        <div class="container text-center text-white">
+            <h3><b>Active Jobs</b></h3>
+        </div>
+        <div class="container workersTable mt-2">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm text-center align-middle">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Client</th>
+                        <th scope="col">Object</th>
+                        <th scope="col">Starting</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col">Payment</th>
+                        <th scope="col">Work</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let r of activeJobs">
+                        <td>
+                            <a href="agencyClientDetails" target="_blank" (click)="clientDetails(r)">{{r.client}}</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" href="agencyObjecttDetails" target="_blank" (click)="viewObject(r)">View</a>
+                        </td>
+                        <td>{{r.starting}}</td>
+                        <td>{{r.deadline}}</td>
+                        <td>{{r.cost}}€</td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm" (click)="work(r)">Work</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="activeJobs.length == 0">
+        <div class="container text-center text-white">
+            <h3><i>There are no active jobs.</i></h3>
+        </div>
+    </div>
+</section>
+
+<!-- Fill Space (so footer is at the bottom)-->
+<div style="flex-grow:1"></div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+</div>
